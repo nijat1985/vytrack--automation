@@ -11,41 +11,55 @@ import org.testng.annotations.Test;
 public class PageAccessTest extends TestBase {
     @Test
     public void vehicleContractsTestStoreManager(){
-//TODO 1. Login to Vytrack as a store manager
+        logger = report.createTest("Vehicle Contracts Test with Store Manager");
+        logger.info("1. Login to Vytrack as a store manager");
         loginPage.login(ConfigurationReader.getProperty("usernameStoreManager"), ConfigurationReader.getProperty("passwordStoreManager"));
 
-//TODO 2. Verify that you can access Vehicle contracts page
+        logger.info("2. Go to Vehicle Contracts page");
         dashboardPage.changeMenu("Fleet", "Vehicle Contracts");
         wait.until(ExpectedConditions.textToBePresentInElement(vehiclesPage.pageheader,"All Vehicle Contract"));
+
+        logger.info("3. Verify that you can access Vehicle contracts page");
         assertEquals(vehicleContractsPage.pageheader.getText(), "All Vehicle Contract");
+
+        logger.pass("Vehicle Contracts Test with Store Manager PASSED");
     }
 
 
     @Test
     public void vehicleContractsTestSalesManager(){
-//TODO 1. Login to Vytrack as a sales manager
+        logger = report.createTest("Vehicle Contracts Test with Sales Manager");
+        logger.info("1. Login to Vytrack as a sales manager");
         loginPage.login(ConfigurationReader.getProperty("usernamSalesManager"), ConfigurationReader.getProperty("passwordSalesManager"));
 
-//TODO 2. Verify that you can access Vehicle contracts page
+        logger.info("2. Go to Vehicle Contracts page");
         dashboardPage.changeMenu("Fleet", "Vehicle Contracts");
         wait.until(ExpectedConditions.textToBePresentInElement(vehiclesPage.pageheader,"All Vehicle Contract"));
+
+        logger.info("3. Verify that you can access Vehicle contracts page");
         assertEquals(vehicleContractsPage.pageheader.getText(), "All Vehicle Contract");
+
+        logger.pass("Vehicle Contracts Test with Sales Manager PASSED");
     }
 
 
     @Test
     public void vehicleContractsTestDriver(){
-//TODO 1. Login to Vytrack as a driver
+        logger = report.createTest("Vehicle Contracts Test with Driver");
+        logger.info("1. Login to Vytrack as a driver");
         loginPage.login(ConfigurationReader.getProperty("usernameDriver"), ConfigurationReader.getProperty("passwordDriver"));
 
-//TODO  2. Verify that you cannot access Vehicle contracts page
-//      3. Message You do not have permission to perform this action. should be displayed
+        logger.info("2. Go to Vehicle Contracts page");
         dashboardPage.changeMenu("Fleet", "Vehicle Contracts");
-        //wait.until(ExpectedConditions.textToBePresentInElement(vehiclesPage.pageheader,"All Vehicle Contract"));
+
+        logger.info("3. Verify that you cannot access Vehicle contracts page");
+        assertNotEquals(vehicleContractsPage.pageheader.getText(), "All Vehicle Contract");
+
+        logger.info("4. Message You do not have permission to perform this action. should be displayed");
         assertTrue(dashboardPage.doNotHavePermission.isDisplayed());
         assertEquals(dashboardPage.doNotHavePermission.getText(), "You do not have permission to perform this action.");
 
-
+        logger.pass("Vehicle Contracts Test with Driver PASSED");
     }
 
 }
