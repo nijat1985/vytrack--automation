@@ -34,13 +34,20 @@ public class VytrackPageBase {
         String menu2X = "//span[.='"+ menu2 + "'][@class='title title-level-2']";
         WebElement menu2El = Driver.getDriver().findElement(By.xpath(menu2X));
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 60);
 
+        //wait.until(ExpectedConditions.invisibilityOf(Driver.getDriver().findElement(By.xpath("//div[@class='loader-mask shown']"))));
         wait.until(ExpectedConditions.elementToBeClickable(menu1El));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         menu1El.click();
 
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

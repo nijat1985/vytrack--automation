@@ -26,6 +26,7 @@ public class DateAndTimeTests extends TestBase {
         dashboardPage.changeMenu("Activities", "Calendar Events");
 
         logger.info("3. Click on create new calendar event");
+        BrowserUtils.wait(3);
         calendarEventsPage.creatCalendarEventButton.click();
 
         logger.info("4. Change the start date to future date");
@@ -38,6 +39,8 @@ public class DateAndTimeTests extends TestBase {
         assertEquals(calendarEventsPage.endDate.getText(),calendarEventsPage.startDate.getText());
 
         logger.info("6. Change back the start date to today’s date");
+        calendarEventsPage.startDate.click();
+        BrowserUtils.wait(2);
         calendarEventsPage.todayButtonInStratDate.click();
 
         logger.info("7. Verify that end date changes back to today’s date");
@@ -58,6 +61,7 @@ public class DateAndTimeTests extends TestBase {
         dashboardPage.changeMenu("Activities", "Calendar Events");
 
         logger.info("3. Click on create new calendar event");
+        BrowserUtils.wait(2);
         calendarEventsPage.creatCalendarEventButton.click();
 
         logger.info("4. Change the start time to any other time");

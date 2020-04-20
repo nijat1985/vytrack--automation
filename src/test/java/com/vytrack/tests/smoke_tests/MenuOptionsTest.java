@@ -2,9 +2,6 @@ package com.vytrack.tests.smoke_tests;
 
 import com.vytrack.base.TestBase;
 import com.vytrack.utilities.ConfigurationReader;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;

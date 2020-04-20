@@ -10,15 +10,12 @@ import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public abstract class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected LoginPage loginPage;
@@ -30,9 +27,9 @@ public class TestBase {
     protected OpportunitiesPage opportunitiesPage;
     protected CallsPage callsPage;
     protected VehicleContractsPage vehicleContractsPage;
-    protected ExtentReports report;
+    protected static ExtentReports report;
     private ExtentHtmlReporter htmlReporter;
-    protected ExtentTest logger;
+    protected static ExtentTest logger;
 
     @BeforeSuite
     public void setUpReport(){
@@ -48,15 +45,21 @@ public class TestBase {
         report.setSystemInfo("browser",ConfigurationReader.getProperty("browser"));
     }
 
+    @Parameters("url")
     @BeforeMethod
-    public void setUp(){
+    public void setUp(@Optional String url){
+
+
         driver = Driver.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
 
-        String url = ConfigurationReader.getProperty("url");
-        driver.get(url);
+        if (url == null) {
+            driver.get(ConfigurationReader.getProperty("url"));
+        }else {
+            driver.get(url);
+        }
 
         loginPage = new LoginPage();
         dashboardPage = new DashboardPage();

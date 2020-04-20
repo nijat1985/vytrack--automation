@@ -3,6 +3,8 @@ package com.vytrack.tests.component_tests.login_navigation;
 import com.vytrack.base.TestBase;
 import com.vytrack.utilities.ConfigurationReader;
 import static org.testng.Assert.*;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
@@ -14,8 +16,8 @@ public class LoginTest extends TestBase {
         loginPage.login(ConfigurationReader.getProperty("usernameStoreManager"), ConfigurationReader.getProperty("passwordStoreManager"));
 
         logger.info("2. Verify name of the store manager is displayed on top right");
-        assertEquals(dashboardPage.accountHolderName.getText(), ConfigurationReader.getProperty("storeManagerName"));
         String actualNameOfStoreManager = dashboardPage.accountHolderName.getText();
+        assertEquals(actualNameOfStoreManager, ConfigurationReader.getProperty("storeManagerName"));
 
         logger.info("3. Verify Dashboad page is open");
         assertEquals(driver.getTitle(), "Dashboard");
@@ -40,6 +42,7 @@ public class LoginTest extends TestBase {
         loginPage.login(ConfigurationReader.getProperty("usernameDriver"), ConfigurationReader.getProperty("passwordDriver"));
 
         logger.info("10. Verify Dashboad/Quick Launchpad page is open");
+        wait.until(ExpectedConditions.titleIs("Dashboard"));
         assertEquals(driver.getTitle(), "Dashboard");
         assertEquals(dashboardPage.pageheader.getText(),"Quick Launchpad");
 

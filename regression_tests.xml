@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Automation">
+    <test name="Regresion test">
+        <packages>
+            <package name="com.vytrack.tests.component_tests.activities"></package>
+            <package name="com.vytrack.tests.component_tests.fleet"></package>
+            <package name="com.vytrack.tests.component_tests.login_navigation"></package>
+        </packages>
+    </test>
+
+</suite>

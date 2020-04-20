@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="magic">
+    <test name="magic">
+        <classes>
+            <class name="com.vytrack.magic.TestNGMagicChild1"></class>
+            <class name="com.vytrack.magic.TestNGMagicChild2"></class>
+        </classes>
+    </test>
+</suite>
